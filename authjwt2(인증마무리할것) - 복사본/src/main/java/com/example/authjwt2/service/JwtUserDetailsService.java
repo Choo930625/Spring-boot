@@ -32,7 +32,7 @@ public class JwtUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         // db 데이터를 가져오기
-        DAOUser user = userDao.findByUsername(username).orElseThrow(()-> new NotFoundException("계정이 없습니다."));
+        DAOUser user = userDao.findByUsername(username).orElseThrow(() -> new NotFoundException("계정이 없습니다."));
 
         if ("javainuse".equals(username)) {
             return new User("javainuse", "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",

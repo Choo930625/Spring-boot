@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name= "token")
+@Table(name = "token")
 public class Token {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
