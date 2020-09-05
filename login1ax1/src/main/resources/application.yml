@@ -1,19 +1,18 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/logindb?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/logindb2?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
     password: tjddls!933
 
-    jpa:
-      database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-      open-in-view: false
-      show-sql: true
-      hibernate:
-        format_sql: true
-        ddl-auto: create
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      format_sql: true
+      ddl-auto: create
 
-
-    messages:
-      basename: i18n/exception
-      encoding: UTF-8
+  messages:
+    basename: i18n/exception
+    encoding: UTF-8

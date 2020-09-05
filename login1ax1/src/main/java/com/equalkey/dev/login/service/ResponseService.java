@@ -66,6 +66,6 @@ public class ResponseService {
     private void setSuccessResult(CommonResult result) {
         result.setSuccess(true);
         result.setCode(CommonResponse.SUCCESS.getCode());
-        result.setCode(CommonResponse.FAIL.getCode());
+        result.setMsg(CommonResponse.SUCCESS.getMsg());
     }
 }
