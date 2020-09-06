@@ -2,6 +2,7 @@ package com.equalkey.dev.login.advice;
 
 
 import com.equalkey.dev.login.advice.exception.CAuthenticationEntryPointException;
+import com.equalkey.dev.login.controller.exception.CCommunicationException;
 import com.equalkey.dev.login.exception.CEmailSigninFailedException;
 import com.equalkey.dev.login.exception.CUserNotFoundException;
 import com.equalkey.dev.login.model.response.CommonResult;
@@ -63,5 +64,11 @@ public class ExceptionAdvice {
     @ExceptionHandler(AccessDeniedException.class)
     public CommonResult AccessDeniedException(HttpServletRequest request, AccessDeniedException e) {
         return responseService.getFailResult(Integer.valueOf(getMessage("accessDenied.code")), getMessage("accessDenied.msg"));
+    }
+
+    @ExceptionHandler(CCommunicationException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public CommonResult communicationException(HttpServletRequest request, CCommunicationException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("communicationError.code")), getMessage("communicationError.msg"));
     }
 }
