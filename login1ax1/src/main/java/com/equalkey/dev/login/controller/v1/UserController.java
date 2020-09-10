@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@Api(tags={"1. User"} )
+@Api(tags = {"1. User"})
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1")
@@ -25,7 +25,6 @@ public class UserController {
 
     @Autowired
     UserService userService;
-
 
 
     @ApiOperation(value = "회원 입력", notes = "회원을 입력한다")
@@ -47,7 +46,7 @@ public class UserController {
         return responseService.getSingledResult(userService.findById(msrl));
     }
 
-    @ApiOperation(value = "회원 리스트 조회", notes="모든 회원을 조회한다")
+    @ApiOperation(value = "회원 리스트 조회", notes = "모든 회원을 조회한다")
     @GetMapping("/users")
     public ListResult<User> findAllUser() {
         return responseService.getListResult(userService.findAll());
@@ -56,10 +55,10 @@ public class UserController {
     @ApiOperation(value = "회원 수정", notes = "회원 정보 수정")
     @PutMapping("/user")
     public SingleResult<User> modify(@ApiParam(value = "회원 번호 : ", required = true) @RequestParam
-    Long msrl,
-            @ApiParam(value = "회원 아이디: ", required = true) @RequestParam String uid,
+                                             Long msrl,
+                                     @ApiParam(value = "회원 아이디: ", required = true) @RequestParam String uid,
                                      @ApiParam(value = "회원 이름 : ", required = true) @RequestParam
-                                     String name) {
+                                             String name) {
         return responseService.getSingledResult(userService.update(msrl, uid, name));
     }
 

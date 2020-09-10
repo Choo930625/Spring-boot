@@ -17,6 +17,7 @@ public class HelloController {
     public String helloworldString() {
         return "helloworld";
     }
+
     /*
     2. 화면에 {message:"helloworld"} 라고 출력됩니다.
     */
@@ -27,11 +28,13 @@ public class HelloController {
         hello.message = "helloworld";
         return hello;
     }
+
     /*
     3. 화면에 helloworld.ftl의 내용이 출력됩니다.
     */
     @GetMapping(value = "/helloworld/page")
     public String helloworld() {
+        System.out.println("choo");
         return "helloworld";
     }
 

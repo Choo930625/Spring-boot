@@ -79,7 +79,7 @@ public class SignController {
 
         KakaoProfile profile = kakaoService.getKakaoProfile(accessToken);
         Optional<User> user = userJpaRepo.findByUidAndProvider(String.valueOf(profile.getId()), provider);
-        if(user.isPresent())
+        if (user.isPresent())
             throw new CUserExistException();
 
         userJpaRepo.save(User.builder()

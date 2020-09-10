@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+
 
 @RequiredArgsConstructor
 @Controller
@@ -53,6 +55,7 @@ public class SocialController {
      * 카카오 인증 완료 후 리다이렉트 화면
      */
     @GetMapping(value = "/kakao")
+    @ResponseBody
     public ModelAndView redirectKakao(ModelAndView mav, @RequestParam String code) {
         mav.addObject("authInfo", kakaoService.getKakaoTokenInfo(code));
         mav.setViewName("social/redirectKakao");

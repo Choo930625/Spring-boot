@@ -1,3 +1,8 @@
+#server:
+#  servlet:
+#    context-path: /
+#  port: 8080
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -22,11 +27,18 @@ spring:
 
   social:
     kakao:
-      client_id: dc6c7e3a08b5d8e5b74d854352ee5e24 # 앱생성시 받은 REST API 키
-      redirect: http://localhost:8080/social/login/kakao
+      client_id: 351f111e0804a540f7d406fb81f3975c # 앱생성시 받은 REST API 키
+#      redirect: http://localhost:8080/social/login/kakao
+      redirect: /social/login/kakao
       url:
         login: https://kauth.kakao.com/oauth/authorize
         token: https://kauth.kakao.com/oauth/token
         profile: https://kapi.kakao.com/v2/user/me
   url:
     base: http://localhost:8080
+
+
+
+#  freemarker:
+#    template-loader-path: classpath:/templates
+#    suffix: .ftlh

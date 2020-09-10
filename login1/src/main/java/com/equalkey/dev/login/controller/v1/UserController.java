@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@PreAuthorize("hasRole('ROLE_USER')") @Secured("ROLE_USER")
+@PreAuthorize("hasRole('ROLE_USER')")
+@Secured("ROLE_USER")
 @Api(tags = {"2. User"})
 @RequiredArgsConstructor
 @RestController
