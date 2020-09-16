@@ -30,30 +30,28 @@ public class SignController {
     private final ResponseService responseService;
     private final PasswordEncoder passwordEncoder;
 
-    @ApiOperation(value = "로그인", notes = "이메일 회원 로그인을 한다.")
+    @ApiOperation(value = "로그인", notes="이메일 회원 로그인을 한다.")
     @PostMapping(value = "/signin")
-    public SingleResult<String> signin(@ApiParam(value = "회원ID : 계정", required = true) @RequestParam String id,
-                                       @ApiParam(value = "비밀번호", required = true) @RequestParam String password) {
+    public SingleResult<String> signin(@ApiParam(value = "회원 ID: 이메일", required = true)
+                                       @RequestParam String id,
+                                       @ApiParam(value = "회원 pw: 비밀번호", required = true)
+                                       @RequestParam String password)
+    {
         User user = userJpaRepo.findByUid(id).orElseThrow(CEmailSigninFailedException::new);
-        if (!passwordEncoder.matches(password, user.getPassword()))
+        if(!passwordEncoder.matches(password, user.getPassword())) {
             throw new CEmailSigninFailedException();
-
+        }
         return responseService.getSuccessSingleResult(jwtTokenProvider.createToken(String.valueOf(user.getMsrl()), user.getRoles()));
-
     }
 
-    @ApiOperation(value = "가입", notes = "회원가입을 한다.")
+    @ApiOperation(value = "회원 가입", notes="회원 가입을 한다.")
     @PostMapping(value = "/signup")
-    public CommonResult signin(@ApiParam(value = "회원ID : 계정", required = true) @RequestParam String id,
-                               @ApiParam(value = "비밀번호", required = true) @RequestParam String password,
+    public CommonResult signup(@ApiParam(value="회원ID: 이메일", required = true) @RequestParam String id,
+                               @ApiParam(value ="비밀번호", required = true) @RequestParam String password,
                                @ApiParam(value = "이름", required = true) @RequestParam String name) {
+        userJpaRepo.save(User.builder().uid(id).password(passwordEncoder.encode(password)).name(name)
+        .roles(Collections.singletonList("ROLE_USER")).build());
 
-        userJpaRepo.save(User.builder()
-                .uid(id)
-                .password(passwordEncoder.encode(password))
-                .name(name)
-                .roles(Collections.singletonList("ROLE_USER"))
-                .build());
         return responseService.getSuccessCommonResult();
     }
 }

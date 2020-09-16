@@ -66,6 +66,8 @@ public class ResponseService {
         result.setSucceess(false);
         result.setCode(code);
         result.setMsg(msg);
+
+        return result;
     }
 
     public void setSuccess(CommonResult result) {
