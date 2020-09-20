@@ -2,16 +2,27 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>메인</title>
+    <title>Welcome CNU Restaurant Survey</title>
 </head>
 <body>
 
-    <h1>메인 페이지</h1>
-    <hr>
+    <header>
+        <nav id="navbar">
+            <div class="container">
+                <h1><a href="index.html">HBT</a></h1>
+                <ul>
+                    <li><a class="content" href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
     <a sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
     <a sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
     <a sec:authorize="isAnonymous()" th:href="@{/user/signup}">회원가입</a>
     <a sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/user/info}">내정보</a>
-    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}">어드민</a>
+
 </body>
 </html>
